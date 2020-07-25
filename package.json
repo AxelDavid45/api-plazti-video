@@ -1,0 +1,11 @@
+{
+  "name": "platzi-video",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Axel Espinosa @E_Axel45 axelespinosadev.com",
+  "license": "MIT"
+}
