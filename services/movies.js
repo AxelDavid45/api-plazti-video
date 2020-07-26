@@ -1,3 +1,4 @@
+'use strict'
 const { moviesMock } = require('../utils/mocks/moviesData');
 class MoviesService {
   async getMovies() {
