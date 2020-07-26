@@ -1,12 +1,13 @@
 'use strict';
 const express = require('express');
-const { moviesMock } = require('../utils/mocks/moviesData');
 const router = express.Router();
+const MoviesService = require('../services/movies');
+const movieService = new MoviesService();
 
 //Get a list of movies
 router.get('/', async (req, res, next) => {
   try {
-    const movies = await Promise.resolve(moviesMock);
+    const movies = await movieService.getMovies();
     res.statusCode = 200;
     res.json({
       data: movies
@@ -20,8 +21,9 @@ router.get('/', async (req, res, next) => {
 //Get a single movie
 router.get('/:movieId', async (req, res, next) => {
   try {
+    const movieId = req.params.movieId;
     //This code is just an example, we're not using yet any service to retrieve information
-    const movie = await Promise.resolve(moviesMock[0]);
+    const movie = await movieService.getMovie(movieId);
     res.statusCode = 200;
     res.json({
       data: movie
@@ -35,8 +37,9 @@ router.get('/:movieId', async (req, res, next) => {
 //Create a movie
 router.post('/', async (req, res, next) => {
   try {
+    const movieData = req.body;
     //This code is just an example, we're not using yet any service to retrieve information
-    const movieCreatedId = await Promise.resolve(moviesMock[0].id);
+    const movieCreatedId = await movieService.createMovie(movieData);
     res.statusCode = 201;
     res.json({
       data: movieCreatedId
@@ -50,8 +53,9 @@ router.post('/', async (req, res, next) => {
 //Update the movie
 router.put('/:movieId', async (req, res, next) => {
   try {
+    const movieId = req.params.movieId;
     //This code is just an example, we're not using yet any service to retrieve information
-    const movieUpdatedId = await Promise.resolve(moviesMock[0].id);
+    const movieUpdatedId = await movieService.updateMovie(movieId);
     res.statusCode = 200;
     res.json({
       data: movieUpdatedId
@@ -65,8 +69,9 @@ router.put('/:movieId', async (req, res, next) => {
 //Delete the movie
 router.delete('/:movieId', async (req, res, next) => {
   try {
+    const movieId = req.params.movieId;
     //This code is just an example, we're not using yet any service to retrieve information
-    const movieDeletedId = await Promise.resolve(moviesMock[0].id);
+    const movieDeletedId = await movieService.deleteMovie(movieId);
     res.statusCode = 200;
     res.json({
       data: movieDeletedId
