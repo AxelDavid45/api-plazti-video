@@ -3,6 +3,7 @@ const app = express();
 const configs = require('./config/index');
 const moviesRoutes = require('./routes/movies');
 
+app.use(express.json());
 //Use routes movies
 app.use('/api/movies', moviesRoutes);
 

@@ -54,8 +54,9 @@ router.post('/', async (req, res, next) => {
 router.put('/:movieId', async (req, res, next) => {
   try {
     const movieId = req.params.movieId;
+    const movieData = req.body;
     //This code is just an example, we're not using yet any service to retrieve information
-    const movieUpdatedId = await movieService.updateMovie(movieId);
+    const movieUpdatedId = await movieService.updateMovie(movieId, movieData);
     res.statusCode = 200;
     res.json({
       data: movieUpdatedId
