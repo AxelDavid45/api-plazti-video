@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "DEBUG=app:* nodemon index",
-    "start": "NODE_ENV=production node index"
+    "dev": "DEBUG=app:* nodemon app.js",
+    "start": "NODE_ENV=production node app.js"
   },
   "keywords": [],
   "author": "Axel Espinosa @E_Axel45 axelespinosadev.com",
