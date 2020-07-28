@@ -3,6 +3,12 @@ const express = require('express');
 const router = express.Router();
 const MoviesService = require('../services/movies');
 const movieService = new MoviesService();
+const validateData = require('../utils/middleware/validationData-handler');
+const {
+  movieIdSchema,
+  createMovieSchema,
+  updateMovieSchema
+} = require('../utils/schemas/movies');
 
 //Get a list of movies
 router.get('/', async (req, res, next) => {
@@ -19,7 +25,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //Get a single movie
-router.get('/:movieId', async (req, res, next) => {
+router.get('/:movieId', validateData({ movieId: movieIdSchema }, 'params'), async (req, res, next) => {
   try {
     const movieId = req.params.movieId;
     //This code is just an example, we're not using yet any service to retrieve information
@@ -35,7 +41,7 @@ router.get('/:movieId', async (req, res, next) => {
 });
 
 //Create a movie
-router.post('/', async (req, res, next) => {
+router.post('/', validateData(createMovieSchema), async (req, res, next) => {
   try {
     const movieData = req.body;
     //This code is just an example, we're not using yet any service to retrieve information
@@ -51,7 +57,7 @@ router.post('/', async (req, res, next) => {
 });
 
 //Update the movie
-router.put('/:movieId', async (req, res, next) => {
+router.put('/:movieId', [validateData({ movieId: movieIdSchema }, 'params'), validateData(updateMovieSchema)], async (req, res, next) => {
   try {
     const movieId = req.params.movieId;
     const movieData = req.body;
@@ -68,7 +74,7 @@ router.put('/:movieId', async (req, res, next) => {
 });
 
 //Delete the movie
-router.delete('/:movieId', async (req, res, next) => {
+router.delete('/:movieId', validateData( { movieId: movieIdSchema }, 'params'), async (req, res, next) => {
   try {
     const movieId = req.params.movieId;
     //This code is just an example, we're not using yet any service to retrieve information
