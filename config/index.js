@@ -1,5 +1,5 @@
 'use strict'
-require('dotenv').config();
+require('dotenv').config()
 
 const configs = {
   env: process.env.NODE_ENV !== 'production',
@@ -8,6 +8,6 @@ const configs = {
   dbUser: encodeURIComponent(process.env.MONGO_USER),
   dbName: encodeURIComponent(process.env.MONGO_DBNAME),
   dbHost: encodeURIComponent(process.env.MONGO_HOST),
-  dbPassword: encodeURIComponent(process.env.MONGO_PASSWORD),
-};
-module.exports = configs;
+  dbPassword: encodeURIComponent(process.env.MONGO_PASSWORD)
+}
+module.exports = configs

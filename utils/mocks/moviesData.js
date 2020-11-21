@@ -151,6 +151,6 @@ const moviesMock = [
       'http://columbia.edu/eget/orci/vehicula/condimentum/curabitur/in/libero.html',
     tags: ['Action|Adventure|Comedy|Drama|War', 'Animation', 'Drama']
   }
-];
+]
 
-module.exports = moviesMock;
+module.exports = moviesMock

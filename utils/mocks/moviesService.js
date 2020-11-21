@@ -1,12 +1,12 @@
-const mocks = require('./moviesData');
+const mocks = require('./moviesData')
 class MoviesService {
-  getMovies() {
-    return Promise.resolve(mocks);
+  getMovies () {
+    return Promise.resolve(mocks)
   }
 
-  getMovie(movieId) {
-    return Promise.resolve(mocks[movieId]);
+  getMovie (movieId) {
+    return Promise.resolve(mocks[movieId])
   }
 }
 
-module.exports = MoviesService;
+module.exports = MoviesService
