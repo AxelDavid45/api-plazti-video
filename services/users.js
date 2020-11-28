@@ -1,3 +1,4 @@
+'use strict'
 const MongoLib = require('../libs/mongolib')
 const bcrypt = require('bcrypt')
 

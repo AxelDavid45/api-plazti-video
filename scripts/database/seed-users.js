@@ -1,5 +1,5 @@
 // DEBUG=app:* node scripts/database/seedUsers.js
-
+'use strict'
 const bcrypt = require('bcrypt')
 const chalk = require('chalk')
 const debug = require('debug')('app:scripts:users')

@@ -1,5 +1,5 @@
 // DEBUG=app:* node scripts/database/seedMovies.js
-
+'use strict'
 const chalk = require('chalk')
 const debug = require('debug')('app:scripts:movies')
 const MongoLib = require('../../libs/mongolib')

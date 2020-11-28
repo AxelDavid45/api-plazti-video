@@ -1,5 +1,5 @@
 // DEBUG=app:* node scripts/database/seed-apikeys.js
-
+'use strict'
 const chalk = require('chalk')
 const crypto = require('crypto')
 const debug = require('debug')('app:scripts:api-keys')

@@ -1,3 +1,4 @@
+'use strict'
 const joi = require('@hapi/joi')
 
 const { movieIdSchema } = require('./movies')
