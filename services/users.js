@@ -8,6 +8,11 @@ class UsersService {
     this.mongoDb = new MongoLib()
   }
 
+  /**
+   * Retrieves a user by passing the email
+   * @param {string} email
+   * @returns An object containing the user information
+   */
   async getUser ({ email }) {
     const [user] = await this.mongoDb.getAll(this.collection, { email })
     return user
