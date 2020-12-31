@@ -20,7 +20,7 @@ class MongoLib {
   // Crud methods
   async getAll (collection, query) {
     const db = await this.connection()
-    return await db.collection(collection).find(query).toArray() || []
+    return await db.collection(collection).find(query).toArray()
   }
 
   async getOne (collection, id) {
