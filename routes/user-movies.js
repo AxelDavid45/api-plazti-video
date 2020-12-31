@@ -7,8 +7,10 @@ const { movieIdSchema } = require('../utils/schemas/movies')
 const { userIdSchema } = require('../utils/schemas/users')
 const { createUserMovieSchema } = require('../utils/schemas/user-movies')
 const userMoviesService = new UserMoviesService()
+const passport = require('passport')
+require('../auth/strategies/jwt')
 
-router.get('/', validationHandler({ userId: userIdSchema }, 'query'), async (req, res, next) => {
+router.get('/', passport.authenticate('jwt', { session: false }), validationHandler({ userId: userIdSchema }, 'query'), async (req, res, next) => {
   const { userId } = req.query
   try {
     const userMovies = await userMoviesService.getUserMovies({ userId })
@@ -20,7 +22,7 @@ router.get('/', validationHandler({ userId: userIdSchema }, 'query'), async (req
   }
 })
 
-router.post('/', validationHandler(createUserMovieSchema), async (req, res, next) => {
+router.post('/', passport.authenticate('jwt', { session: false }), validationHandler(createUserMovieSchema), async (req, res, next) => {
   const { userMovie } = req.body
   try {
     const createdUserMovieId = await userMoviesService.createUserMovie({ userMovie })
@@ -32,7 +34,7 @@ router.post('/', validationHandler(createUserMovieSchema), async (req, res, next
   }
 })
 
-router.delete('/:userMovieId', validationHandler({ userMovieId: movieIdSchema }, 'params'), async (req, res, next) => {
+router.delete('/:userMovieId', passport.authenticate('jwt', { session: false }), validationHandler({ userMovieId: movieIdSchema }, 'params'), async (req, res, next) => {
   const { userMovieId } = req.params
   try {
     const deletedUserMovieId = userMoviesService.deleteUserMovie({ userMovieId })
