@@ -5,11 +5,15 @@ const boom = require('@hapi/boom')
 const jwt = require('jsonwebtoken')
 const ApiKeysService = require('../services/api-keys')
 const { authJwtSecret } = require('../config')
+const validationHandler = require('../utils/middleware/validationData-handler')
+const { createUserSchema } = require('../utils/schemas/users')
+const UsersService = require('../services/users')
 
 // Basic strategy
 require('../auth/strategies/basic')
 
 const apiKeyInstance = new ApiKeysService()
+const usersService = new UsersService()
 
 router.post('/sign-in', async (req, res, next) => {
   // this will help us to know which permissions the user will have
@@ -52,6 +56,19 @@ router.post('/sign-in', async (req, res, next) => {
       next(error)
     }
   })(req, res, next)
+})
+
+router.post('/sign-up', validationHandler(createUserSchema), async (req, res, next) => {
+  try {
+    const user = req.body
+
+    const response = await usersService.createUser({ user })
+    res.status(201).json({
+      data: response
+    })
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router
