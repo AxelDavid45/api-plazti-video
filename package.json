@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "DEBUG=app:* nodemon server.js",
+    "dev": "DEBUG=app:* nodemon src/server.js",
     "lint": "npx standard --fix",
     "start": "NODE_ENV=production node main",
     "tests": "mocha test/unit --exit"
